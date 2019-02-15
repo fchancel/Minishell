@@ -28,3 +28,37 @@ char		*get_env(char **env, char *elem)
 	}
 	return (NULL);
 }
+
+int		len_env(char **env)
+{
+	int	count;
+	int	i;
+
+	i = 0;
+	count = 0;
+	while (env[i])
+	{
+		count++;
+		i++;
+	}
+	return (count);
+}
+
+t_env		*dup_env(char **env)
+{
+	t_env	my_env;
+	int	i;
+
+	i = 0;
+	if ((my_env = (t_env *)malloc(sizeof(t_env)) == NULL))
+		return (); // erreur de malloc;
+	if ((my_env->env = (char **)malloc(sizeof(char *) * (len_env(env)) + 1) == NULL))
+		return (); // Erreur de malloc;
+	while (env[i])
+	{
+		my_env->env = ft_strdup(env[i]);
+		i++;
+	}
+	return (my_env);
+}
+

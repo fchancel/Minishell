@@ -17,7 +17,8 @@ SRC_NAME 	=	read.c			\
 				main.c			\
 				display.c		\
 				path.c			\
-				ft_env.c
+				ft_env.c		\
+				exec_cmd.c
 
 OBJ_PATH	= 	objs
 CPPFLAGS	=	-I include
@@ -35,8 +36,8 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 		@make -C libft
-		@$(CC) $(LDFLAG) $(LDLIBS) $^ -o $@
-		@echo "Compilation Ft_ls .... OK"
+		@$(CC) $(LDFLAG) $^ $(LDLIBS)  -o $@
+		@echo "Compilation minishell .... OK"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 		@mkdir $(OBJ_PATH) 2> /dev/null || true
@@ -46,11 +47,11 @@ clean:
 		@make -C libft clean
 		@rm -fv $(OBJ)
 		@rmdir $(OBJ_PATH) 2> /dev/null || true
-		@echo "Clean Ft_ls .......... OK"
+		@echo "Clean minishell .......... OK"
 
 fclean: clean
 		@rm -f libft/libft.a
 		@rm -fv $(NAME)
-		@echo "Fclean Ft_ls .......... OK"
+		@echo "Fclean minishell .......... OK"
 re: fclean all
 

@@ -21,6 +21,9 @@
 */
 
 # include "../libft/include/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/wait.h>
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -62,7 +65,7 @@ void		prompt(char **env);
 */
 
 char		**get_path(char *total_path, char **av);
-int			control_access(char **path);
+char			*control_access(char **path);
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -71,5 +74,13 @@ int			control_access(char **path);
 */
 
 char		*get_env(char **env, char *elem);
+
+/*
+**┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+**┃                                 exec_cmd	                                   ┃
+**┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+*/
+
+void		exec_cmd(char **cmd, char *path, char **env);
 
 #endif

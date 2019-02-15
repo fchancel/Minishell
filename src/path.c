@@ -37,17 +37,16 @@ char		**get_path(char *total_path, char **av)
 	return (path);
 }
 
-int			control_access(char **path)
+char			*control_access(char **path)
 {
 	int		i;
 
 	i = 0;
 	while (path[i])
 	{
-		dprintf(1, "i = %d |%s| %d \n", i, path[i], (access(path[i], X_OK)) );
 		if ((access(path[i], X_OK) == 0))
-			return (i);
+			return (path[i]);
 		i++;
 	}
-	return (-1);
+	return (NULL);
 }
