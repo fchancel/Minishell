@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   display.c                                        .::    .:/ .      .::   */
+/*   ft_count_char.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/02/14 13:26:47 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 17:41:41 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/02/18 14:44:08 by fchancel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/02/18 15:02:09 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
-
-void	prompt(char *pwd)
+int		ft_count_char(char c, char *str)
 {
-	pwd  = ft_strrchr(pwd, '/');
-	pwd++;
-	ft_putcolor(BOLD_GREEN, "\u279C  ");
-	ft_putcolor(BOLD_CYAN, pwd);
-	ft_putchar(' ');
+	int		i;
+	int		count;
+
+	count = 0;
+	i = 0;
+	if (!str)
+		return (count);
+	while (str[i])
+	{
+		if (str[i] == c)
+			count++;
+		i++;
+	}
+	return (count);
 }

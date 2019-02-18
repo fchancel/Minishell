@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/02 18:15:16 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/30 12:29:57 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/18 14:46:42 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -98,5 +98,6 @@ void			ft_free_tab(void **tab, int n);
 void			ft_error(char *str);
 void			ft_putcolor(char *o_color, char *str);
 int				ft_intlen(int nb);
+int				ft_count_char(char c, char *str);
 
 #endif

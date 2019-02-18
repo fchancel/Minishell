@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   display.c                                        .::    .:/ .      .::   */
+/*   display_error.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/02/14 13:26:47 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 17:41:41 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/02/18 10:20:15 by fchancel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/02/18 10:52:32 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	prompt(char *pwd)
+void		display_error_exit(char *str)
 {
-	pwd  = ft_strrchr(pwd, '/');
-	pwd++;
-	ft_putcolor(BOLD_GREEN, "\u279C  ");
-	ft_putcolor(BOLD_CYAN, pwd);
-	ft_putchar(' ');
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(str, 2);
+	exit(0);
 }

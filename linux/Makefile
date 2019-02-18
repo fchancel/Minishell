@@ -6,21 +6,20 @@
 #    By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/02/04 22:28:38 by fchancel     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/18 15:48:08 by fchancel    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/02/18 10:41:09 by fchancel    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 NAME		= 	minishell
 SRC_PATH 	= 	src
-SRC_NAME 	=	read.c				\
-				main.c				\
-				display.c			\
-				path.c				\
-				ft_env.c			\
-				exec_cmd.c			\
-				display_error.c		\
-				annex_function.c
+SRC_NAME 	=	read.c			\
+				main.c			\
+				display.c		\
+				path.c			\
+				ft_env.c		\
+				exec_cmd.c
+				display_error.c
 OBJ_PATH	= 	objs
 CPPFLAGS	=	-I include
 LDFLAG		= 	-L libft
@@ -37,7 +36,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 		@make -C libft
-		@$(CC) $(LDFLAG) $(LDLIBS) $^ -o $@
+		@$(CC) $(LDFLAG) $^ $(LDLIBS)  -o $@
 		@echo "Compilation minishell .... OK"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c

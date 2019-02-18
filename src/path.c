@@ -6,13 +6,12 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 16:05:50 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/14 16:46:38 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/18 17:41:56 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-#include <stdio.h>
 
 char		**get_path(char *total_path, char **av)
 {
@@ -21,6 +20,7 @@ char		**get_path(char *total_path, char **av)
 	int		i;
 	char	*argument;
 
+	dprintf(1, "|||||");
 	argument = ft_strjoin("/", av[0]);
 	i = 0;
 	path = ft_strsplit(total_path, ':');
@@ -29,10 +29,8 @@ char		**get_path(char *total_path, char **av)
 	while (tmp[i])
 	{
 		path[i] = ft_strjoin(path[i], argument);
-
 		i++;
 	}
-//	ft_free_2tab((void**)tmp);
 	free(argument);
 	return (path);
 }
