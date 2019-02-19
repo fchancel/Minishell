@@ -20,7 +20,6 @@ char		**get_path(char *total_path, char **av)
 	int		i;
 	char	*argument;
 
-	dprintf(1, "|||||");
 	argument = ft_strjoin("/", av[0]);
 	i = 0;
 	path = ft_strsplit(total_path, ':');
