@@ -18,8 +18,9 @@ SRC_NAME 	=	read.c			\
 				display.c		\
 				path.c			\
 				ft_env.c		\
-				exec_cmd.c
-				display_error.c
+				exec_cmd.c		\
+				display_error.c		\
+				annex_function.c	
 OBJ_PATH	= 	objs
 CPPFLAGS	=	-I include
 LDFLAG		= 	-L libft

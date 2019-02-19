@@ -60,8 +60,9 @@ typedef struct			s_cmd
 char		*ft_read(void);
 t_cmd		*get_line(void);
 t_cmd		*initialize_cmd(void);
-t_cmd		*fill_tab_cmd(char **tab);
+t_cmd		*fill_tab_cmd(char *line);
 t_cmd		*create_cmd(char *line);
+char		**create_tab(char *line);
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
