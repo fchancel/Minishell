@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/13 18:18:09 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 19:30:53 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/21 19:28:34 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@
  **		Recupere dans line la commande de l'entrer standard
  */
 
-char		*ft_read(void)
+char		*ft_read(char **env)
 {
 	char	buf[BUF_SIZE + 1];
 	int		ret;
@@ -30,12 +30,17 @@ char		*ft_read(void)
 	while ((ret = read(0, &buf, BUF_SIZE)))
 	{
 		buf[ret] = '\0';
-		tamp = line;
-		line = ft_strjoin(tamp, buf);
-		if (tamp)
-			free(tamp);
-		if (char_search(buf, '\n') == 0)
-			break ;
+		if (is_caps(buf) == 1)
+			go_termcaps(buf, env);
+		else
+		{
+			tamp = line;
+			line = ft_strjoin(tamp, buf);
+			if (tamp)
+				free(tamp);
+			if (char_search(buf, '\n') == 0)
+				break ;
+		}
 	}
 	return (line);
 }
@@ -44,7 +49,7 @@ char		*ft_read(void)
  **		Creer la ligne de commande avec la gestion des quotes
  */
 
-t_cmd		*get_line(void)
+t_cmd		*get_line(char **env)
 {
 	char		*line;
 	int			bol;
@@ -56,12 +61,12 @@ t_cmd		*get_line(void)
 	bol = 0;
 	while (bol == 0)
 	{
-		line = ft_read();
+		line = ft_read(env);
 		while ((ft_twin_quote(line) % 2) != 0)
 		{
 			ft_putstr("dquote> ");
 			tamp = line;
-			line = ft_strjoin(line, ft_read());
+			line = ft_strjoin(line, ft_read(env));
 			free(tamp);
 		}
 		bol = 1;

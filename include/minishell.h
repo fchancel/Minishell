@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/26 15:09:23 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 19:16:39 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/21 19:26:55 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,8 +31,13 @@
 **┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 */
 
-# define BUF_SIZE			10
-
+# define BUF_SIZE	4
+# define RIGHT		"\033[C"
+# define LEFT		"\033[D"
+# define DOWN		"\033[B"
+# define UP			"\033[A"
+# define HOME		"\033[H"
+# define END		"\033[F"
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -57,8 +62,8 @@ typedef struct			s_cmd
 **┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 */
 
-char		*ft_read(void);
-t_cmd		*get_line(void);
+char		*ft_read(char **env);
+t_cmd		*get_line(char **env);
 t_cmd		*initialize_cmd(void);
 t_cmd		*fill_tab_cmd(char *line);
 t_cmd		*create_cmd(char *line);
@@ -115,6 +120,26 @@ void		display_error_exit(char *str);
 
 int			ft_twin_quote(char *str);
 int			char_search(char *str, char c);
+int			is_caps(char *str);
 
+/*
+**┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+**┃                                 signal		                               ┃
+**┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+*/
+
+void		signal_handler(int signal);
+
+/*
+**┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+**┃                                 termcaps	                               ┃
+**┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+*/
+
+int			initialize_termcap(char **env);
+void		init_struct_term(void);
+void		reset_struct_term(void);
+void		applicate_termcaps(char *str);
+void		go_termcaps(char *str, char **env);
 
 #endif

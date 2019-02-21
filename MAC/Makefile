@@ -6,7 +6,7 @@
 #    By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/02/04 22:28:38 by fchancel     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/18 15:48:08 by fchancel    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/02/21 19:29:06 by fchancel    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,7 +20,9 @@ SRC_NAME 	=	read.c				\
 				ft_env.c			\
 				exec_cmd.c			\
 				display_error.c		\
-				annex_function.c
+				annex_function.c	\
+				signal.c			\
+				termcaps.c
 OBJ_PATH	= 	objs
 CPPFLAGS	=	-I include
 LDFLAG		= 	-L libft

@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/18 15:46:03 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 16:30:17 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/21 18:19:19 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,4 +54,12 @@ int			ft_twin_quote(char *str)
 		}
 	}
 	return (count);
+}
+
+int			is_caps(char *str)
+{
+	if (str[0] == 27)
+		return (1);
+	else
+		return (0);
 }
