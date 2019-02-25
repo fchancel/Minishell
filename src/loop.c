@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 14:41:03 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/25 16:06:14 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/25 16:20:12 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,9 +37,12 @@ int		loop_lk_list(t_cmd *cmd, t_env *my_env)
 	start = cmd;
 	while (cmd)
 	{
+
+	dprintf(1, "|||||||");
 		//CHECK BUILTIN EXIT ENV CD ECHO
 		if (check_builtins(cmd->tab_cmd) == 1)
 			free_exit(start, my_env);
+
 		path = get_env(my_env->env, "PATH");
 		final_path = get_path(path, cmd->tab_cmd);
 		path = control_access(final_path);

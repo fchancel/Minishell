@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 15:40:07 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/25 16:05:01 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/25 16:20:04 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 int		check_builtins(char **cmd)
 {
-	if (cmd)
+	if (cmd[0])
 	{
 		if (ft_strcmp(cmd[0], "exit") == 0)
 			return (1);
