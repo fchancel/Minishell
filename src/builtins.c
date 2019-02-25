@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   display.c                                        .::    .:/ .      .::   */
+/*   builtins.c                                       .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/02/14 13:26:47 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/25 15:38:20 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/02/25 15:40:07 by fchancel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/02/25 16:05:01 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	prompt()
+int		check_builtins(char **cmd)
 {
-	char	*pwd;
-	char	*tmp;
-
-	pwd = ft_strnew(1000);
-	tmp = pwd;
-	getcwd(pwd, 1000);
-	pwd  = ft_strrchr(pwd, '/');
-	pwd++;
-	ft_putcolor(BOLD_GREEN, "\u279C  ");
-	ft_putcolor(BOLD_CYAN, pwd);
-	ft_putchar(' ');
-	free(tmp);
+	if (cmd)
+	{
+		if (ft_strcmp(cmd[0], "exit") == 0)
+			return (1);
+	}
+	return (0);
 }

@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   display.c                                        .::    .:/ .      .::   */
+/*   ft_linked_list.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/02/14 13:26:47 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/25 15:38:20 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/02/25 14:33:44 by fchancel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/02/25 14:39:19 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	prompt()
+t_cmd		*initialize_cmd(void)
 {
-	char	*pwd;
-	char	*tmp;
+	t_cmd		*cmd;
 
-	pwd = ft_strnew(1000);
-	tmp = pwd;
-	getcwd(pwd, 1000);
-	pwd  = ft_strrchr(pwd, '/');
-	pwd++;
-	ft_putcolor(BOLD_GREEN, "\u279C  ");
-	ft_putcolor(BOLD_CYAN, pwd);
-	ft_putchar(' ');
-	free(tmp);
+	if ((cmd = (t_cmd*)malloc(sizeof(t_cmd))) == NULL)
+		display_error_exit("error malloc cmd in initialize_cmd");
+	cmd->tab_cmd = NULL;
+	cmd->next = NULL;
+	return (cmd);
 }

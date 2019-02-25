@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/13 18:18:09 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/21 19:28:34 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/25 15:30:18 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@
  **		Recupere dans line la commande de l'entrer standard
  */
 
-char		*ft_read(char **env)
+char		*ft_read(void)
 {
 	char	buf[BUF_SIZE + 1];
 	int		ret;
@@ -30,9 +30,7 @@ char		*ft_read(char **env)
 	while ((ret = read(0, &buf, BUF_SIZE)))
 	{
 		buf[ret] = '\0';
-		if (is_caps(buf) == 1)
-			go_termcaps(buf, env);
-		else
+		if (is_caps(buf) != 1)
 		{
 			tamp = line;
 			line = ft_strjoin(tamp, buf);
@@ -49,7 +47,7 @@ char		*ft_read(char **env)
  **		Creer la ligne de commande avec la gestion des quotes
  */
 
-t_cmd		*get_line(char **env)
+t_cmd		*get_line(void)
 {
 	char		*line;
 	int			bol;
@@ -61,29 +59,18 @@ t_cmd		*get_line(char **env)
 	bol = 0;
 	while (bol == 0)
 	{
-		line = ft_read(env);
+		line = ft_read();
 		while ((ft_twin_quote(line) % 2) != 0)
 		{
 			ft_putstr("dquote> ");
 			tamp = line;
-			line = ft_strjoin(line, ft_read(env));
+			line = ft_strjoin(line, ft_read());
 			free(tamp);
 		}
 		bol = 1;
 	}
 	cmd = create_cmd(line);
 	free(line);
-	return (cmd);
-}
-
-t_cmd		*initialize_cmd(void)
-{
-	t_cmd		*cmd;
-
-	if ((cmd = (t_cmd*)malloc(sizeof(t_cmd))) == NULL)
-		display_error_exit("error malloc cmd in initialize_cmd");
-	cmd->tab_cmd = NULL;
-	cmd->next = NULL;
 	return (cmd);
 }
 
