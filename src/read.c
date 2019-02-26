@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/13 18:18:09 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/25 15:30:18 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 15:13:22 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -78,7 +78,6 @@ t_cmd		*create_cmd(char *line)
 {
 	char	**tab;
 	t_cmd	*cmd;
-	t_cmd	*n_cmd;
 	t_cmd	*start;
 	int	i;
 
@@ -89,13 +88,12 @@ t_cmd		*create_cmd(char *line)
 	i++;
 	while (tab[i])
 	{
-		n_cmd = fill_tab_cmd(tab[i]);
-		cmd->next = n_cmd;
+		cmd->next = fill_tab_cmd(tab[i]);
 		cmd = cmd->next;
 		i++;
 	}
+	ft_free_2tab((void*)tab);
 	return (start);
-
 }
 
 t_cmd		*fill_tab_cmd(char *line)
@@ -121,14 +119,11 @@ char		**create_tab(char *line)
 	int		i;
 
 	i = 0;
-	if ((tab = (char**)malloc(sizeof(char *) *
-					ft_count_char(';', line) + 2)) == NULL)
-		display_error_exit("error malloc tab in create_cmd");
 	if (ft_strchr(line, ';') != NULL)
 		tab = ft_strsplit(line, ';');
 	else
 	{
-		if ((tab = (char **)malloc(sizeof(char *) * 2)) == NULL)
+		if ((tab = (char **)ft_memalloc(sizeof(char *) * 2)) == NULL)
 			display_error_exit("error malloc tab in create_cmd whitout';'");
 		tab[0] = ft_strdup(line);
 	}

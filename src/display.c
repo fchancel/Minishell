@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 13:26:47 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/25 16:12:11 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 13:36:06 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,17 +15,15 @@
 
 void	prompt()
 {
-	char	*pwd;
-	char	*tmp;
+	char	pwd[1000];
+	int		i;
+	char	*prompt;
 
-
-	pwd = ft_strnew(1000);
-	tmp = pwd;
+	i = 0;
 	getcwd(pwd, 1000);
-	pwd  = ft_strrchr(pwd, '/');
-	pwd++;
+	prompt = ft_strrchr(pwd, '/');
+	prompt++;
 	ft_putcolor(BOLD_GREEN, "\u279C  ");
-	ft_putcolor(BOLD_CYAN, pwd);
+	ft_putcolor(BOLD_CYAN, prompt);
 	ft_putchar(' ');
-	//free(tmp);
 }
