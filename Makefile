@@ -6,7 +6,7 @@
 #    By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/02/04 22:28:38 by fchancel     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/25 15:54:33 by fchancel    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/02/26 18:01:20 by fchancel    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -21,10 +21,9 @@ SRC_NAME 	=	read.c				\
 				exec_cmd.c			\
 				display_error.c		\
 				annex_function.c	\
-				signal.c			\
 				ft_linked_list.c	\
 				loop.c				\
-				exit.c				\
+				ft_free.c			\
 				builtins.c
 OBJ_PATH	= 	objs
 CPPFLAGS	=	-I include

@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/18 11:34:33 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 17:41:47 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 18:15:54 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,8 @@ void	exec_cmd(char **cmd, char *path, char **env)
 {
 	pid_t	pid;
 
+	if (!cmd[0])
+		return;
 	pid = fork();
 	if (pid == 0)
 		execve(path, cmd, env);
