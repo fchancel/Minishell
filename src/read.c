@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/13 18:18:09 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 17:35:47 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 11:24:46 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,22 +23,21 @@ char		*ft_read(void)
 	int		ret;
 	char	*line;
 	char	*tamp;
+	int		test;
 
 	tamp = NULL;
 	line = NULL;
 	ret = 0;
+	test = 0;
 	while ((ret = read(0, &buf, BUF_SIZE)))
 	{
 		buf[ret] = '\0';
-		if (is_caps(buf) != 1)
-		{
-			tamp = line;
-			line = ft_strjoin(tamp, buf);
-			if (tamp)
-				free(tamp);
-			if (char_search(buf, '\n') == 0)
-				break ;
-		}
+		tamp = line;
+		line = ft_strjoin(line, buf);
+		if (tamp)
+			free(tamp);
+		if (char_search(buf, '\n') == 0)
+			break;
 	}
 	return (line);
 }
@@ -51,11 +50,10 @@ t_cmd		*get_line(void)
 {
 	char		*line;
 	int			bol;
-	int			i;
+	char		*tmp2;
 	char		*tamp;
 	t_cmd		*cmd;
 
-	i = 0;
 	bol = 0;
 	while (bol == 0)
 	{
@@ -64,7 +62,9 @@ t_cmd		*get_line(void)
 		{
 			ft_putstr("dquote> ");
 			tamp = line;
-			line = ft_strjoin(line, ft_read());
+			tmp2 = ft_read();
+			line = ft_strjoin(line, tmp2);
+			free(tmp2);
 			free(tamp);
 		}
 		bol = 1;

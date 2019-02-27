@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/18 15:46:03 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/21 18:19:19 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 11:42:02 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,28 +38,25 @@ int			ft_twin_quote(char *str)
 	while (str[++i])
 	{
 		if (str[i] == '\'' || str[i] == '"')
-		{
-			quote = str[i];
-			i++;
-			count++;
-			while (str[i])
-			{
-				if (str[i] == quote)
-				{
-					count++;
-					break ;
-				}
-				i++;
-			}
-		}
+			count_quote(str, &i, &count, &quote);
+		if (!str[i])
+			break;
 	}
 	return (count);
 }
 
-int			is_caps(char *str)
+void		count_quote(char *str, int *i, int *count, char *quote)
 {
-	if (str[0] == 27)
-		return (1);
-	else
-		return (0);
+	*quote = str[*i];
+	*i += 1;
+	*count += 1;
+	while (str[*i])
+	{
+		if (str[*i] == *quote)
+		{
+			*count += 1;
+			break ;
+		}
+		*i += 1;
+	}
 }

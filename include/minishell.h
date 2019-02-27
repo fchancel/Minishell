@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/26 15:09:23 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 18:02:09 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 11:39:35 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,7 +31,7 @@
 **┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 */
 
-# define BUF_SIZE	4
+# define BUF_SIZE	10
 # define RIGHT		"\033[C"
 # define LEFT		"\033[D"
 # define DOWN		"\033[B"
@@ -130,7 +130,7 @@ void		no_command(char *str);
 
 int			ft_twin_quote(char *str);
 int			char_search(char *str, char c);
-int			is_caps(char *str);
+void		count_quote(char *str, int *i, int *count, char *quote);
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
