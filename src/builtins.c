@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 15:40:07 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 17:05:59 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 18:59:34 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,10 +84,16 @@ void	annex_echo(char *cmd, char **env)
 
 void	builtin_cd(char **cmd, t_env *my_env)
 {
+	char	tmp[1000];
+
 	if (ft_strcmp(cmd[1], "-") == 0)
 	{
+		getcwd(tmp, 1000);
 		if (chdir(my_env->old_pwd) == -1)
 			ft_putendl("Error chdir in builin_cd");
+		free(my_env->old_pwd);
+		my_env->old_pwd = ft_strdup(tmp);
+		getcwd(my_env->pwd, 1000);
 	}
 	else
 	{
