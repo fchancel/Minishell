@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 14:41:03 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 10:25:23 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 12:08:26 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,21 +38,26 @@ int		loop_lk_list(t_cmd *cmd, t_env *my_env)
 	char	*path;
 	char	**final_path;
 	t_cmd	*start;
+	int		ret;
 
 	start = cmd;
 	while (cmd)
 	{
 		//CHECK BUILTIN EXIT ENV CD ECHO
-		if (check_builtins(cmd->tab_cmd) == 1)
+		ret = check_builtins(cmd->tab_cmd, my_env);
+		if (ret == -1)
 			free_all(start, my_env, EXIT);
-		path = get_env(my_env->env, "PATH");
-		final_path = get_path(path, cmd->tab_cmd);
-		path = control_access(final_path);
-		if (path == NULL)
-			no_command(cmd->tab_cmd[0]);
-		else
-			exec_cmd(cmd->tab_cmd, path, my_env->env);
-		ft_free_2tab((void**)final_path);
+		else if (ret == 0)
+		{
+			path = get_env(my_env->env, "PATH");
+			final_path = get_path(path, cmd->tab_cmd);
+			path = control_access(final_path);
+			if (path == NULL)
+				no_command(cmd->tab_cmd[0]);
+			else
+				exec_cmd(cmd->tab_cmd, path, my_env->env);
+			ft_free_2tab((void**)final_path);
+		}
 		cmd = cmd->next;
 	}
 	free_all(start, my_env, NO_EXIT);
