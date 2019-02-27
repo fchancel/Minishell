@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 15:40:07 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 18:59:34 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 19:03:24 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,7 +95,7 @@ void	builtin_cd(char **cmd, t_env *my_env)
 		my_env->old_pwd = ft_strdup(tmp);
 		getcwd(my_env->pwd, 1000);
 	}
-	else
+	else      //DOIT GERER LE ~ ET LE /
 	{
 		getcwd(my_env->old_pwd, 1000);
 		if (chdir(cmd[1]) == -1)
