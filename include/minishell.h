@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/26 15:09:23 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 12:47:55 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 14:27:58 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,7 +84,7 @@ t_cmd		*initialize_cmd(void);
 **┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 */
 
-void		prompt();
+void		prompt(void);
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -158,5 +158,6 @@ void		free_all(t_cmd *cmd, t_env *my_env, int is_exit);
 
 int			check_builtins(char **cmd, t_env *my_env);
 void		builtin_echo(char **cmd, t_env *my_env);
+void		annex_echo(char *cmd, char **env);
 
 #endif

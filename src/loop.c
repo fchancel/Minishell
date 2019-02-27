@@ -6,28 +6,27 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 14:41:03 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 12:08:26 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 14:27:18 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int		bol;
+int		g_bol;
 
 int		loop(t_env *my_env)
 {
 	t_cmd	*cmd;
 
 	cmd = NULL;
-
 	while (1)
 	{
-		bol = 0;
+		g_bol = 0;
 		prompt();
 		signal(SIGINT, &signal_handler);
 		cmd = get_line();
-		bol = 1;
+		g_bol = 1;
 		loop_lk_list(cmd, my_env);
 	}
 	return (0);
@@ -43,7 +42,6 @@ int		loop_lk_list(t_cmd *cmd, t_env *my_env)
 	start = cmd;
 	while (cmd)
 	{
-		//CHECK BUILTIN EXIT ENV CD ECHO
 		ret = check_builtins(cmd->tab_cmd, my_env);
 		if (ret == -1)
 			free_all(start, my_env, EXIT);
@@ -69,7 +67,7 @@ void	signal_handler(int signal)
 	if (signal == SIGINT)
 	{
 		ft_putchar('\n');
-		if (bol == 0)
+		if (g_bol == 0)
 			prompt();
 	}
 }

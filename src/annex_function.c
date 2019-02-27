@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/18 15:46:03 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 11:43:55 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 14:22:40 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,7 +40,7 @@ int			ft_twin_quote(char *str)
 		if (str[i] == '\'' || str[i] == '"')
 			count_quote(str, &i, &count, &quote);
 		if (!str[i])
-			break;
+			break ;
 	}
 	return (count);
 }

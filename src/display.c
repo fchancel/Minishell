@@ -6,14 +6,14 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 13:26:47 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 13:36:06 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 14:22:59 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	prompt()
+void	prompt(void)
 {
 	char	pwd[1000];
 	int		i;

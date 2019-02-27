@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 15:40:07 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 12:47:56 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 14:21:49 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,30 +31,16 @@ int		check_builtins(char **cmd, t_env *my_env)
 void	builtin_echo(char **cmd, t_env *my_env)
 {
 	int		i;
-	char	*line;
-	char	*tmp;
-
-	i = 1;
-	while (cmd[i])
-	{
-		dprintf(1, "||%s||", cmd[i]);
-		i++;
-		ft_putchar('\n');
-	}
 
 	i = 1;
 	while (cmd[i])
 	{
 		if (cmd[i][0] == '$')
 		{
-			tmp = ft_strsub(cmd[i], 1, ft_strlen(cmd[i]));
-			line = get_env(my_env->env, tmp);
-			ft_putstr(line);
-			ft_putchar(' ');
-			free(tmp);
+			annex_echo(cmd[i], my_env->env);
 			i++;
 		}
-		if (cmd[i])
+		if (cmd[i] && cmd[i][0] != '$')
 		{
 			ft_putstr(cmd[i]);
 			ft_putchar(' ');
@@ -62,4 +48,30 @@ void	builtin_echo(char **cmd, t_env *my_env)
 		}
 	}
 	ft_putchar('\n');
+}
+
+void	annex_echo(char *cmd, char **env)
+{
+	char	*tmp;
+	int		size;
+	int		i;
+	char	*line;
+
+	i = 1;
+	size = 0;
+	while (cmd[i] && (ft_isalnum(cmd[i]) == 1))
+	{
+		size++;
+		i++;
+	}
+	tmp = ft_strsub(cmd, 1, size);
+	line = get_env(env, tmp);
+	ft_putstr(line);
+	while (cmd[i])
+	{
+		ft_putchar(cmd[i]);
+		i++;
+	}
+	ft_putchar(' ');
+	free(tmp);
 }

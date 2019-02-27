@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 14:52:11 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/26 18:31:46 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 14:32:20 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,7 +38,7 @@ char		*get_env(char **env, char *elem)
 **			Permet de recuperer la taille (nb de ligne) de l'env
 */
 
-int		len_env(char **env)
+int			len_env(char **env)
 {
 	int	count;
 	int	i;
@@ -65,7 +65,8 @@ t_env		*dup_env(char **env)
 	i = 0;
 	if ((my_env = (t_env*)malloc(sizeof(t_env))) == NULL)
 		display_error_exit("error malloc my_env in dup_env");
-	if ((my_env->env = (char **)ft_memalloc(sizeof(char *) * (len_env(env)))) == NULL)
+	if ((my_env->env = (char **)ft_memalloc(sizeof(char *) *
+					(len_env(env)))) == NULL)
 		display_error_exit("error malloc my_env->env in dup_env");
 	while (env[i])
 	{
@@ -74,4 +75,3 @@ t_env		*dup_env(char **env)
 	}
 	return (my_env);
 }
-

@@ -6,16 +6,12 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/13 18:18:09 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 11:24:46 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 14:25:30 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-/*
- **		Recupere dans line la commande de l'entrer standard
- */
 
 char		*ft_read(void)
 {
@@ -37,14 +33,10 @@ char		*ft_read(void)
 		if (tamp)
 			free(tamp);
 		if (char_search(buf, '\n') == 0)
-			break;
+			break ;
 	}
 	return (line);
 }
-
-/*
- **		Creer la ligne de commande avec la gestion des quotes
- */
 
 t_cmd		*get_line(void)
 {
@@ -79,7 +71,7 @@ t_cmd		*create_cmd(char *line)
 	char	**tab;
 	t_cmd	*cmd;
 	t_cmd	*start;
-	int	i;
+	int		i;
 
 	i = 0;
 	tab = create_tab(line);
@@ -115,7 +107,7 @@ t_cmd		*fill_tab_cmd(char *line)
 
 char		**create_tab(char *line)
 {
-	char		**tab;
+	char	**tab;
 	int		i;
 
 	i = 0;
