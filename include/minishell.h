@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/26 15:09:23 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 14:27:58 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 17:06:01 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,6 +50,8 @@
 typedef struct			s_env
 {
 	char	**env;
+	char	*pwd;
+	char	*old_pwd;
 }						t_env;
 
 typedef struct			s_cmd
@@ -131,6 +133,7 @@ void		no_command(char *str);
 int			ft_twin_quote(char *str);
 int			char_search(char *str, char c);
 void		count_quote(char *str, int *i, int *count, char *quote);
+char		*delete_quote(char *str);
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -159,5 +162,6 @@ void		free_all(t_cmd *cmd, t_env *my_env, int is_exit);
 int			check_builtins(char **cmd, t_env *my_env);
 void		builtin_echo(char **cmd, t_env *my_env);
 void		annex_echo(char *cmd, char **env);
+void		builtin_cd(char **cmd, t_env *my_env);
 
 #endif

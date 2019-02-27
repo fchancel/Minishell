@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 14:52:11 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 14:32:20 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 16:53:53 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,6 +60,7 @@ int			len_env(char **env)
 t_env		*dup_env(char **env)
 {
 	t_env	*my_env;
+
 	int		i;
 
 	i = 0;
@@ -68,10 +69,19 @@ t_env		*dup_env(char **env)
 	if ((my_env->env = (char **)ft_memalloc(sizeof(char *) *
 					(len_env(env)))) == NULL)
 		display_error_exit("error malloc my_env->env in dup_env");
+	if ((my_env->pwd = (char *)ft_memalloc(sizeof(char *) * 1000)) == NULL)
+		display_error_exit("error malloc my_env->pwd in dup_env");
+	if ((my_env->old_pwd = (char *)ft_memalloc(sizeof(char *) * 1000)) == NULL)
+		display_error_exit("error malloc my_env->old_pwd in dup_env");
+
 	while (env[i])
 	{
 		my_env->env[i] = ft_strdup(env[i]);
 		i++;
 	}
+
+
+	getcwd(my_env->pwd, 1000);
+	getcwd(my_env->old_pwd, 1000);
 	return (my_env);
 }

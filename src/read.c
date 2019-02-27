@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/13 18:18:09 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 14:25:30 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 16:19:16 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,24 +41,21 @@ char		*ft_read(void)
 t_cmd		*get_line(void)
 {
 	char		*line;
-	int			bol;
 	char		*tmp2;
 	char		*tamp;
 	t_cmd		*cmd;
+	int			bol;
 
 	bol = 0;
-	while (bol == 0)
+	line = ft_read();
+	while ((ft_twin_quote(line) % 2) != 0)
 	{
-		line = ft_read();
-		while ((ft_twin_quote(line) % 2) != 0)
-		{
-			ft_putstr("dquote> ");
-			tamp = line;
-			tmp2 = ft_read();
-			line = ft_strjoin(line, tmp2);
-			free(tmp2);
-			free(tamp);
-		}
+		ft_putstr("dquote> ");
+		tamp = line;
+		tmp2 = ft_read();
+		line = ft_strjoin(line, tmp2);
+		free(tmp2);
+		free(tamp);
 		bol = 1;
 	}
 	cmd = create_cmd(line);
@@ -99,6 +96,9 @@ t_cmd		*fill_tab_cmd(char *line)
 	{
 		if (line[i] == '\n')
 			line[i] = ' ';
+		if ((char_search(line, '"') == 0)|| char_search(line, '\'') == 0)
+		line = delete_quote(line);
+
 		i++;
 	}
 	cmd->tab_cmd = ft_strsplit(line, ' ');

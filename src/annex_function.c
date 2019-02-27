@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/18 15:46:03 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 14:22:40 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/27 15:25:34 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,4 +59,33 @@ void		count_quote(char *str, int *i, int *count, char *quote)
 		}
 		*i += 1;
 	}
+}
+
+char	*delete_quote(char *str)
+{
+	int		i;
+	char	quote;
+
+	i = 0;
+	while (str[i++])
+	{
+		if (str[i] == '"' || str[i] == '\'')
+		{
+			quote = str[i];
+			str[i] = ' ';
+			break ;
+		}
+	}
+	while (str[i])
+		i++;
+	i--;
+	while (i-- >= 0)
+	{
+		if (str[i] == quote)
+		{
+			str[i] = ' ';
+			break ;
+		}
+	}
+	return (str);
 }
