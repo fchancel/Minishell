@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/26 15:09:23 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 17:06:01 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/28 17:55:16 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -162,6 +162,18 @@ void		free_all(t_cmd *cmd, t_env *my_env, int is_exit);
 int			check_builtins(char **cmd, t_env *my_env);
 void		builtin_echo(char **cmd, t_env *my_env);
 void		annex_echo(char *cmd, char **env);
+
+
+/*
+**┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+**┃                                 builtins CD 		                       ┃
+**┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+*/
+
 void		builtin_cd(char **cmd, t_env *my_env);
+void		replace_env(t_env **my_env, char *str, char *elem);
+char		*if_tilde(char *str, char **env);
+t_env		*cd_back(t_env *my_env);
+t_env		*cd_normal(t_env *my_env, char **cmd, char *tilde);
 
 #endif
