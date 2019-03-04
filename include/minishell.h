@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/26 15:09:23 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 16:25:46 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 17:20:21 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,8 +50,6 @@
 typedef struct			s_env
 {
 	char	**env;
-	char	*pwd;
-	char	*old_pwd;
 }						t_env;
 
 typedef struct			s_cmd

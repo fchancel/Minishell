@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/28 14:58:44 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 17:19:20 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 17:38:40 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,24 +37,26 @@ void	builtin_cd(char **cmd, t_env *my_env)
 
 t_env	*cd_back(t_env *my_env)
 {
-	char	tmp[1000];
+	char	*pwd;
+	char	*old_pwd;
 
-	getcwd(tmp, 1000);
-	if (chdir(my_env->old_pwd) == -1)
+	pwd = get_env(my_env->env, "PWD");
+	if (chdir(get_env(my_env->env, "OLDPWD")) == -1)
 		ft_putendl("Error chdir in builin_cd");
-	free(my_env->old_pwd);
-	my_env->old_pwd = ft_strdup(tmp);
-	free(my_env->pwd);
-	my_env->pwd = getcwd(NULL, 0);
+	replace_env(&my_env, pwd, "OLDPWD=");
+	old_pwd = getcwd(NULL, 0);
+	replace_env(&my_env, old_pwd, "PWD=");
+	free(old_pwd);
 	return (my_env);
 }
 
 t_env	*cd_normal(t_env *my_env, char **cmd, char *tilde)
 {
-	(void)cmd[1];
-	free(my_env->old_pwd);
-	my_env->old_pwd = getcwd(NULL, 0);
-	replace_env(&my_env, my_env->old_pwd, "OLDPWD=");
+	char	*old_pwd;
+	char	*pwd;
+
+	old_pwd = getcwd(NULL, 0);
+	replace_env(&my_env, old_pwd, "OLDPWD=");
 	if (tilde != NULL)
 	{
 		if (chdir(tilde) == -1)
@@ -63,8 +65,10 @@ t_env	*cd_normal(t_env *my_env, char **cmd, char *tilde)
 	else if (chdir(cmd[1]) == -1)
 
 		ft_putendl("Error chdir in builin_cd");
-	getcwd(my_env->pwd, 1000);
-	replace_env(&my_env, my_env->pwd, "PWD=");
+	pwd = getcwd(NULL, 0);
+	replace_env(&my_env, pwd, "PWD=");
+	free(old_pwd);
+	free(pwd);
 	return (my_env);
 }
 

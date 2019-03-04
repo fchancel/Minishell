@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 14:52:11 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 17:18:22 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 17:20:41 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,7 +74,5 @@ t_env		*dup_env(char **env)
 		my_env->env[i] = ft_strdup(env[i]);
 		i++;
 	}
-	my_env->pwd = getcwd(NULL, 0);
-	my_env->old_pwd = getcwd(NULL, 0);
 	return (my_env);
 }

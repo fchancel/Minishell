@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 15:46:06 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 14:03:40 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 17:20:53 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,8 +27,6 @@ void		free_all(t_cmd *cmd, t_env *my_env, int is_exit)
 	free(cmd);
 	if (is_exit == EXIT)
 	{
-		free(my_env->pwd);
-		free(my_env->old_pwd);
 		ft_free_2tab((void**)my_env->env);
 		free(my_env);
 		exit(0);
