@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/28 14:58:44 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 17:38:40 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 18:18:02 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,8 +20,9 @@ void	builtin_cd(char **cmd, t_env *my_env)
 	tilde = NULL;
 	if (!cmd[1])
 	{
-		tilde = ft_strjoin("/Users/", get_env(my_env->env, "USER="));
-		chdir(tilde);
+		replace_env(&my_env, get_env(my_env->env, "PWD"), "OLDPWD=");
+		chdir(get_env(my_env->env, "HOME"));
+		replace_env(&my_env, tilde, "PWD=");
 		free(tilde);
 		return ;
 	}
@@ -91,17 +92,15 @@ void	replace_env(t_env **my_env, char *str, char *elem)
 
 char	*if_tilde(char *str, char **env)
 {
-	char	*tilde;
 	char	*begin_path;
 	char	*tmp;
 
-	begin_path = "/Users/";
+	begin_path = get_env(env, "HOME");
+	begin_path = ft_strjoin(begin_path, "/");
 	str = ft_strsub(str, 1, ft_strlen(str));
 	tmp = str;
-	tilde = get_env(env, "USER=");
-	tilde = ft_strjoin(begin_path, tilde);
-	str = ft_strjoin(tilde, str);
-	free(tilde);
+	str = ft_strjoin(begin_path, str);
 	free(tmp);
+	free(begin_path);
 	return (str);
 }
