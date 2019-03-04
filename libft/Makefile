@@ -6,7 +6,7 @@
 #    By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/02/04 22:29:06 by fchancel     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/18 14:46:21 by fchancel    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/04 12:01:21 by fchancel    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -77,6 +77,7 @@ SRC_NAME 	= 	ft_atoi.c			\
 				ft_putcolor.c		\
 				ft_intlen.c			\
 				ft_count_char.c		\
+				ft_strrchr_len.c
 
 OBJ_PATH		= 	objs
 CPPFLAGS	=	-I include

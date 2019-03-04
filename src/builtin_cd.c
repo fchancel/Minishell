@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/28 14:58:44 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/28 17:55:19 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 17:19:20 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,12 +20,14 @@ void	builtin_cd(char **cmd, t_env *my_env)
 	tilde = NULL;
 	if (!cmd[1])
 	{
-		tilde = if_tilde(NULL, my_env->env);
+		tilde = ft_strjoin("/Users/", get_env(my_env->env, "USER="));
 		chdir(tilde);
+		free(tilde);
+		return ;
 	}
 	else if (cmd[1][0] == '~')
-		tilde = if_tilde(NULL, my_env->env);
-	else if (ft_strcmp(cmd[1], "-") == 0)
+		tilde = if_tilde(cmd[1], my_env->env);
+	if (ft_strcmp(cmd[1], "-") == 0)
 		my_env = cd_back(my_env);
 	else
 		my_env = cd_normal(my_env, cmd, tilde);
@@ -49,15 +51,17 @@ t_env	*cd_back(t_env *my_env)
 
 t_env	*cd_normal(t_env *my_env, char **cmd, char *tilde)
 {
+	(void)cmd[1];
 	free(my_env->old_pwd);
 	my_env->old_pwd = getcwd(NULL, 0);
-	replace_env(&my_env, my_env->old_pwd, "OLD_PWD=");
+	replace_env(&my_env, my_env->old_pwd, "OLDPWD=");
 	if (tilde != NULL)
 	{
 		if (chdir(tilde) == -1)
 			ft_putendl("Error chdir in builin_cd");
 	}
 	else if (chdir(cmd[1]) == -1)
+
 		ft_putendl("Error chdir in builin_cd");
 	getcwd(my_env->pwd, 1000);
 	replace_env(&my_env, my_env->pwd, "PWD=");
@@ -85,11 +89,15 @@ char	*if_tilde(char *str, char **env)
 {
 	char	*tilde;
 	char	*begin_path;
+	char	*tmp;
 
 	begin_path = "/Users/";
+	str = ft_strsub(str, 1, ft_strlen(str));
+	tmp = str;
 	tilde = get_env(env, "USER=");
 	tilde = ft_strjoin(begin_path, tilde);
 	str = ft_strjoin(tilde, str);
 	free(tilde);
+	free(tmp);
 	return (str);
 }

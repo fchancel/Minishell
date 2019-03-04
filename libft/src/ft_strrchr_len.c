@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   display_error.c                                  .::    .:/ .      .::   */
+/*   ft_strrchr_len.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/02/18 10:20:15 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 16:20:16 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/03/04 11:50:43 by fchancel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/04 14:26:54 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "libft.h"
 
-void		display_error_exit(char *str)
+int		ft_strrchr_len(const char *s, int c)
 {
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(str, 2);
-	exit(0);
-}
+	size_t l_s;
 
-void		no_command(char *str)
-{
-	ft_putstr("minishell: command not found: ");
-	ft_putendl(str);
+	l_s = ft_strlen(s);
+	if (c == '\0')
+		return (l_s);
+	while (l_s--)
+	{
+		if (s[l_s] == c)
+			return (l_s);
+	}
+	return (ft_strlen(s));
 }

@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 14:41:03 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/28 15:35:50 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 17:13:28 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,8 +34,6 @@ int		loop(t_env *my_env)
 
 int		loop_lk_list(t_cmd *cmd, t_env *my_env)
 {
-	char	*path;
-	char	**final_path;
 	t_cmd	*start;
 	int		ret;
 
@@ -46,19 +44,11 @@ int		loop_lk_list(t_cmd *cmd, t_env *my_env)
 		if (ret == -1)
 			free_all(start, my_env, EXIT);
 		else if (ret == 0)
-		{
-			path = get_env(my_env->env, "PATH");
-			final_path = get_path(path, cmd->tab_cmd);
-			path = control_access(final_path);
-			if (path == NULL)
-				no_command(cmd->tab_cmd[0]);
-			else
-				exec_cmd(cmd->tab_cmd, path, my_env->env);
-			ft_free_2tab((void**)final_path);
-		}
+			in_loop(cmd, my_env);
 		cmd = cmd->next;
-	}
 	free_all(start, my_env, NO_EXIT);
+	}
+
 	return (0);
 }
 
@@ -69,5 +59,28 @@ void	signal_handler(int signal)
 		ft_putchar('\n');
 		if (g_bol == 0)
 			prompt();
+	}
+}
+
+void	in_loop(t_cmd *cmd, t_env *my_env)
+{
+	char	*path;
+	char	**final_path;
+
+	final_path = NULL;
+	if ((path = control_access(cmd->tab_cmd)) != NULL)
+		exec_cmd(cmd->tab_cmd, path, my_env->env);
+	else
+	{
+	if ((path = get_env(my_env->env, "PATH")) != NULL)
+	{
+		final_path = get_path(path, cmd->tab_cmd);
+		path = control_access(final_path);
+	}
+	if (path == NULL)
+		no_command(cmd->tab_cmd[0]);
+	else
+		exec_cmd(cmd->tab_cmd, path, my_env->env);
+	ft_free_2tab((void**)final_path);
 	}
 }

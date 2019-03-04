@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/02 18:15:16 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/18 14:46:42 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 12:00:03 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -99,5 +99,6 @@ void			ft_error(char *str);
 void			ft_putcolor(char *o_color, char *str);
 int				ft_intlen(int nb);
 int				ft_count_char(char c, char *str);
+int				ft_strrchr_len(const char *s, int c);
 
 #endif

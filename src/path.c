@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 16:05:50 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/27 14:24:29 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 16:08:33 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,9 +20,9 @@ char		**get_path(char *total_path, char **av)
 	char	*argument;
 	char	*tmp;
 
-	argument = ft_strjoin("/", av[0]);
 	i = 0;
 	path = ft_strsplit(total_path, ':');
+	argument = ft_strjoin("/", av[0]);
 	while (path[i])
 	{
 		tmp = path[i];

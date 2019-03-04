@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 15:40:07 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/28 15:26:26 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 17:18:23 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,31 @@ int		check_builtins(char **cmd, t_env *my_env)
 			builtin_cd(cmd, my_env);
 			return (1);
 		}
+		else
+		{
+			if (parsing_env(cmd, my_env) == 1)
+				return (1);
+		}
+	}
+	return (0);
+}
+
+int		parsing_env(char **cmd, t_env *my_env)
+{
+	if (ft_strcmp(cmd[0], "env") == 0)
+	{
+		builtin_env(cmd, my_env);
+		return (1);
+	}
+	else if (ft_strcmp(cmd[0], "setenv") == 0)
+	{
+		builtin_setenv(cmd, my_env);
+		return (1);
+	}
+	else if (ft_strcmp(cmd[0], "unsetenv") == 0)
+	{
+		builtin_unsetenv(cmd, my_env);
+		return (1);
 	}
 	return (0);
 }
@@ -45,7 +70,13 @@ void	builtin_echo(char **cmd, t_env *my_env)
 			annex_echo(cmd[i], my_env->env);
 			i++;
 		}
-		if (cmd[i] && cmd[i][0] != '$')
+		if (cmd[i][0] == '~')
+		{
+			ft_putstr(get_env(my_env->env, "HOME"));
+			i++;
+			ft_putchar(' ');
+		}
+		else if (cmd[i] && cmd[i][0] != '$')
 		{
 			ft_putstr(cmd[i]);
 			ft_putchar(' ');

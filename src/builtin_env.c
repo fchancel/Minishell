@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   display_error.c                                  .::    .:/ .      .::   */
+/*   builtin_env.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/02/18 10:20:15 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 16:20:16 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Created: 2019/03/04 14:50:02 by fchancel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/04 16:49:37 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void		display_error_exit(char *str)
+void		builtin_env(char **cmd, t_env *my_env)
 {
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(str, 2);
-	exit(0);
+	if (!cmd [1])
+		print_env(my_env);
+	else if (ft_strcmp(cmd[1], "-i"))
+	{
+		ft_putstr("Wait guy, I dev that in few minutes");
+	}
 }
 
-void		no_command(char *str)
+void		print_env(t_env *my_env)
 {
-	ft_putstr("minishell: command not found: ");
-	ft_putendl(str);
+	int		i;
+
+	i = 0;
+	while (my_env->env[i])
+	{
+		ft_putstr(my_env->env[i]);
+		ft_putchar('\n');
+		i++;
+	}
 }

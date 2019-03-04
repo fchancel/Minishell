@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/26 15:09:23 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/28 17:55:16 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/04 16:25:46 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,7 +95,7 @@ void		prompt(void);
 */
 
 char		**get_path(char *total_path, char **av);
-char			*control_access(char **path);
+char		*control_access(char **path);
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -113,7 +113,7 @@ t_env		*dup_env(char **env);
 **┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 */
 
-void		exec_cmd(char **cmd, char *path, char **env);
+void			exec_cmd(char **cmd, char *path, char **env);
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -144,6 +144,7 @@ char		*delete_quote(char *str);
 int			loop(t_env *my_env);
 int			loop_lk_list(t_cmd *cmd, t_env *my_env);
 void		signal_handler(int signal);
+void		in_loop(t_cmd *cmd, t_env *my_env);
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -162,6 +163,7 @@ void		free_all(t_cmd *cmd, t_env *my_env, int is_exit);
 int			check_builtins(char **cmd, t_env *my_env);
 void		builtin_echo(char **cmd, t_env *my_env);
 void		annex_echo(char *cmd, char **env);
+int			parsing_env(char **cmd, t_env *my_env);
 
 
 /*
@@ -175,5 +177,23 @@ void		replace_env(t_env **my_env, char *str, char *elem);
 char		*if_tilde(char *str, char **env);
 t_env		*cd_back(t_env *my_env);
 t_env		*cd_normal(t_env *my_env, char **cmd, char *tilde);
+
+/*
+**┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+**┃                                 builtins env 		                       ┃
+**┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+*/
+
+void		builtin_env(char **cmd, t_env *my_env);
+void		print_env(t_env *my_env);
+
+/*
+**┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+**┃                                 builtins set env		                     ┃
+**┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+*/
+
+void		builtin_setenv(char **cmd, t_env *my_env);
+void		builtin_unsetenv(char **cmd, t_env *my_env);
 
 #endif
