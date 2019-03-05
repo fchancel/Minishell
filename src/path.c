@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 16:05:50 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 16:08:33 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/05 17:40:13 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,7 +41,7 @@ char		*control_access(char **path)
 	i = 0;
 	while (path[i])
 	{
-		if ((access(path[i], X_OK) == 0))
+		if ((access(path[i], F_OK) == 0))
 			return (path[i]);
 		i++;
 	}

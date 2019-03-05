@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/13 18:18:09 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 18:52:39 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/05 17:38:07 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,6 +34,11 @@ char		*ft_read(void)
 			free(tamp);
 		if (char_search(buf, '\n') == 0)
 			break ;
+	}
+	if (!line)
+	{
+		ft_putchar('\n');
+		return (ft_strdup(" "));
 	}
 	return (line);
 }
@@ -94,11 +99,10 @@ t_cmd		*fill_tab_cmd(char *line)
 	cmd = initialize_cmd();
 	while (line[i])
 	{
-		if (line[i] == '\n')
+		if (line[i] == '\n' || line[i] == '\t')
 			line[i] = ' ';
-		if ((char_search(line, '"') == 0)|| char_search(line, '\'') == 0)
-		line = delete_quote(line);
-
+		if ((char_search(line, '"') == 0) || char_search(line, '\'') == 0)
+			line = delete_quote(line);
 		i++;
 	}
 	cmd->tab_cmd = ft_strsplit(line, ' ');

@@ -6,17 +6,12 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 14:52:11 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 17:20:41 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/05 14:26:41 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-/*
-**			Renvoi un pointeur sur la premier occurence trouver dans l'env
-**			selon l'elem envoyer
-*/
 
 char		*get_env(char **env, char *elem)
 {
@@ -34,10 +29,6 @@ char		*get_env(char **env, char *elem)
 	return (NULL);
 }
 
-/*
-**			Permet de recuperer la taille (nb de ligne) de l'env
-*/
-
 int			len_env(char **env)
 {
 	int	count;
@@ -53,14 +44,9 @@ int			len_env(char **env)
 	return (count);
 }
 
-/*
-**			Permet de dupliquer l'env dans un maillon d'une liste chainee
-*/
-
 t_env		*dup_env(char **env)
 {
 	t_env	*my_env;
-
 	int		i;
 
 	i = 0;

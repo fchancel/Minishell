@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 15:40:07 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 17:18:23 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/05 15:18:36 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,7 +70,7 @@ void	builtin_echo(char **cmd, t_env *my_env)
 			annex_echo(cmd[i], my_env->env);
 			i++;
 		}
-		if (cmd[i][0] == '~')
+		else if (cmd[i][0] == '~')
 		{
 			ft_putstr(get_env(my_env->env, "HOME"));
 			i++;

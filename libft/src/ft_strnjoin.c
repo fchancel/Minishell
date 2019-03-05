@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/15 11:46:31 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/13 18:38:12 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/05 14:28:24 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,6 +19,7 @@ char	*ft_strnjoin(char const *s1, char const *s2, size_t n)
 	size_t	l2;
 	char	*str;
 	int		i;
+
 	if (!s1 && !s2)
 		return (NULL);
 	if (s1 && !s2)

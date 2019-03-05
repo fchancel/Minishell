@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/28 14:58:44 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 18:18:02 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/05 16:13:27 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,6 +47,7 @@ t_env	*cd_back(t_env *my_env)
 	replace_env(&my_env, pwd, "OLDPWD=");
 	old_pwd = getcwd(NULL, 0);
 	replace_env(&my_env, old_pwd, "PWD=");
+	ft_putendl(get_env(my_env->env, "PWD="));
 	free(old_pwd);
 	return (my_env);
 }
@@ -64,7 +65,6 @@ t_env	*cd_normal(t_env *my_env, char **cmd, char *tilde)
 			ft_putendl("Error chdir in builin_cd");
 	}
 	else if (chdir(cmd[1]) == -1)
-
 		ft_putendl("Error chdir in builin_cd");
 	pwd = getcwd(NULL, 0);
 	replace_env(&my_env, pwd, "PWD=");
@@ -83,7 +83,7 @@ void	replace_env(t_env **my_env, char *str, char *elem)
 	while ((*my_env)->env[i])
 	{
 		if (ft_strncmp((*my_env)->env[i], elem, size) == 0)
-			break;
+			break ;
 		i++;
 	}
 	free((*my_env)->env[i]);

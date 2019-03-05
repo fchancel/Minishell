@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 14:41:03 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 17:13:28 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/05 17:45:32 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,6 +25,7 @@ int		loop(t_env *my_env)
 		g_bol = 0;
 		prompt();
 		signal(SIGINT, &signal_handler);
+		signal(SIGQUIT, &signal_handler);
 		cmd = get_line();
 		g_bol = 1;
 		loop_lk_list(cmd, my_env);
@@ -46,15 +47,14 @@ int		loop_lk_list(t_cmd *cmd, t_env *my_env)
 		else if (ret == 0)
 			in_loop(cmd, my_env);
 		cmd = cmd->next;
-	free_all(start, my_env, NO_EXIT);
 	}
-
+	free_all(start, my_env, NO_EXIT);
 	return (0);
 }
 
 void	signal_handler(int signal)
 {
-	if (signal == SIGINT)
+	if (signal == SIGINT || signal == SIGQUIT)
 	{
 		ft_putchar('\n');
 		if (g_bol == 0)
@@ -68,19 +68,21 @@ void	in_loop(t_cmd *cmd, t_env *my_env)
 	char	**final_path;
 
 	final_path = NULL;
+	if (!cmd->tab_cmd[0] || cmd->tab_cmd[0][0] == ' ')
+		return ;
 	if ((path = control_access(cmd->tab_cmd)) != NULL)
 		exec_cmd(cmd->tab_cmd, path, my_env->env);
 	else
 	{
-	if ((path = get_env(my_env->env, "PATH")) != NULL)
-	{
-		final_path = get_path(path, cmd->tab_cmd);
-		path = control_access(final_path);
-	}
-	if (path == NULL)
-		no_command(cmd->tab_cmd[0]);
-	else
-		exec_cmd(cmd->tab_cmd, path, my_env->env);
-	ft_free_2tab((void**)final_path);
+		if ((path = get_env(my_env->env, "PATH")) != NULL)
+		{
+			final_path = get_path(path, cmd->tab_cmd);
+			path = control_access(final_path);
+		}
+		if (path == NULL)
+			no_command(cmd->tab_cmd[0]);
+		else
+			exec_cmd(cmd->tab_cmd, path, my_env->env);
+		ft_free_2tab((void**)final_path);
 	}
 }
