@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/13 18:18:09 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/05 17:38:07 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 11:40:54 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,12 +19,10 @@ char		*ft_read(void)
 	int		ret;
 	char	*line;
 	char	*tamp;
-	int		test;
 
 	tamp = NULL;
 	line = NULL;
 	ret = 0;
-	test = 0;
 	while ((ret = read(0, &buf, BUF_SIZE)))
 	{
 		buf[ret] = '\0';
@@ -43,7 +41,7 @@ char		*ft_read(void)
 	return (line);
 }
 
-t_cmd		*get_line(void)
+t_cmd		*get_line(t_env *my_env)
 {
 	char		*line;
 	char		*tmp2;
@@ -63,12 +61,12 @@ t_cmd		*get_line(void)
 		free(tamp);
 		bol = 1;
 	}
-	cmd = create_cmd(line);
+	cmd = create_cmd(line, my_env);
 	free(line);
 	return (cmd);
 }
 
-t_cmd		*create_cmd(char *line)
+t_cmd		*create_cmd(char *line, t_env *my_env)
 {
 	char	**tab;
 	t_cmd	*cmd;
@@ -87,7 +85,8 @@ t_cmd		*create_cmd(char *line)
 		i++;
 	}
 	ft_free_2tab((void*)tab);
-	return (start);
+	cmd = replace_tilde(start, my_env);
+	return (cmd);
 }
 
 t_cmd		*fill_tab_cmd(char *line)

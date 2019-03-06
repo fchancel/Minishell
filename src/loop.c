@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 14:41:03 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/05 17:45:32 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 11:40:55 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,8 +25,7 @@ int		loop(t_env *my_env)
 		g_bol = 0;
 		prompt();
 		signal(SIGINT, &signal_handler);
-		signal(SIGQUIT, &signal_handler);
-		cmd = get_line();
+		cmd = get_line(my_env);
 		g_bol = 1;
 		loop_lk_list(cmd, my_env);
 	}
@@ -54,7 +53,7 @@ int		loop_lk_list(t_cmd *cmd, t_env *my_env)
 
 void	signal_handler(int signal)
 {
-	if (signal == SIGINT || signal == SIGQUIT)
+	if (signal == SIGINT)
 	{
 		ft_putchar('\n');
 		if (g_bol == 0)
@@ -68,10 +67,13 @@ void	in_loop(t_cmd *cmd, t_env *my_env)
 	char	**final_path;
 
 	final_path = NULL;
-	if (!cmd->tab_cmd[0] || cmd->tab_cmd[0][0] == ' ')
+	if (!cmd->tab_cmd[0])
 		return ;
-	if ((path = control_access(cmd->tab_cmd)) != NULL)
-		exec_cmd(cmd->tab_cmd, path, my_env->env);
+	if (ft_strchr(cmd->tab_cmd[0], '/') != NULL)
+	{
+		if ((path = control_access(cmd->tab_cmd)) != NULL)
+			exec_cmd(cmd->tab_cmd, path, my_env->env);
+	}
 	else
 	{
 		if ((path = get_env(my_env->env, "PATH")) != NULL)

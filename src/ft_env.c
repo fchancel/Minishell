@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/14 14:52:11 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/05 14:26:41 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 11:25:33 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,4 +61,21 @@ t_env		*dup_env(char **env)
 		i++;
 	}
 	return (my_env);
+}
+
+void		replace_env(t_env **my_env, char *str, char *elem)
+{
+	int			i;
+	size_t		size;
+
+	size = ft_strlen(elem);
+	i = 0;
+	while ((*my_env)->env[i])
+	{
+		if (ft_strncmp((*my_env)->env[i], elem, size) == 0)
+			break ;
+		i++;
+	}
+	free((*my_env)->env[i]);
+	(*my_env)->env[i] = ft_strjoin(elem, str);
 }

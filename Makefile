@@ -6,7 +6,7 @@
 #    By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/02/04 22:28:38 by fchancel     #+#   ##    ##    #+#        #
-#    Updated: 2019/03/05 14:30:28 by fchancel    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/06 11:24:11 by fchancel    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -15,7 +15,7 @@ NAME		= 	minishell
 SRC_PATH 	= 	src
 SRC_NAME 	=	read.c				\
 				main.c				\
-				display.c			\
+				prompt.c			\
 				path.c				\
 				ft_env.c			\
 				exec_cmd.c			\
@@ -23,11 +23,10 @@ SRC_NAME 	=	read.c				\
 				annex_function.c	\
 				ft_linked_list.c	\
 				loop.c				\
-				ft_free.c			\
 				builtins.c			\
 				builtin_cd.c		\
 				builtin_env.c		\
-				builtin_setenv.c
+				tilde.c
 OBJ_PATH	= 	objs
 CPPFLAGS	=	-I include
 LDFLAG		= 	-L libft
