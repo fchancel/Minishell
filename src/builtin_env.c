@@ -6,21 +6,29 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/04 14:50:02 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 11:12:09 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 17:01:24 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void		builtin_env(char **cmd, t_env *my_env)
+int			builtin_env(t_cmd *cmd, t_env *my_env)
 {
-	if (!cmd[1])
+	char 	*tmp;
+
+	if (!cmd->tab_cmd[1])
 		print_env(my_env);
-	else if (ft_strcmp(cmd[1], "-i"))
+	else if (cmd->tab_cmd[1] && (ft_strchr(cmd->tab_cmd[1], '=') == NULL))
 	{
-		ft_putchar('\n');
+		tmp = cmd->tab_cmd[1];
+		free(cmd->tab_cmd[0]);
+		cmd->tab_cmd[0] = ft_strdup(tmp);
+		free(cmd->tab_cmd[1]);
+		cmd->tab_cmd[1] = NULL;
+		return (0);
 	}
+	return (1);
 }
 
 void		print_env(t_env *my_env)
@@ -46,7 +54,7 @@ void		builtin_setenv(char **cmd, t_env *my_env)
 	elem = ft_strjoin(cmd[1], "=");
 	i = -1;
 	n_env = NULL;
-	if (!cmd[1] || cmd[3])
+	if (!cmd[1] || !cmd[2] || cmd[3])
 		ft_putendl("usage : setenv [MYVAR][myvalue]");
 	else if ((var = get_env(my_env->env, elem)) != NULL)
 		replace_env(&my_env, cmd[2], elem);

@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/26 15:09:23 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 11:51:27 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 19:06:04 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -106,7 +106,7 @@ void				replace_env(t_env **my_env, char *str, char *elem);
 **┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 */
 
-void				exec_cmd(char **cmd, char *path, char **env);
+void				exec_cmd(t_cmd *cmd, char *path, t_env *my_env);
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -146,10 +146,9 @@ void				in_loop(t_cmd *cmd, t_env *my_env);
 **┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 */
 
-int					check_builtins(char **cmd, t_env *my_env);
+int					check_builtins(t_cmd *cmd, t_env *my_env);
 void				builtin_echo(char **cmd, t_env *my_env);
-void				annex_echo(char *cmd, char **env);
-int					parsing_env(char **cmd, t_env *my_env);
+int					parsing_env(t_cmd *cmd, t_env *my_env);
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
@@ -167,7 +166,7 @@ t_env				*cd_normal(t_env *my_env, char **cmd);
 **┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 */
 
-void				builtin_env(char **cmd, t_env *my_env);
+int					builtin_env(t_cmd *cmd, t_env *my_env);
 void				print_env(t_env *my_env);
 void				builtin_setenv(char **cmd, t_env *my_env);
 void				builtin_unsetenv(char **cmd, t_env *my_env);
@@ -178,7 +177,7 @@ void				builtin_unsetenv(char **cmd, t_env *my_env);
 **┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 */
 
-t_cmd				*replace_tilde(t_cmd *cmd, t_env *my_env);
-char				*if_tilde(char *str, char **env);
+t_cmd				*replace_expansion(t_cmd *cmd, t_env *my_env);
+char				*if_expansion(char *str, char **env, char expansion, char *search);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/02/04 22:28:38 by fchancel     #+#   ##    ##    #+#        #
-#    Updated: 2019/03/06 11:24:11 by fchancel    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/06 12:21:16 by fchancel    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -32,7 +32,7 @@ CPPFLAGS	=	-I include
 LDFLAG		= 	-L libft
 LDLIBS		=	-lft
 CC 			=	clang
-CFLAGS 		=	-Werror -Wall -Wextra -g
+CFLAGS 		=	-Werror -Wall -Wextra
 
 OBJ_NAME 	= 	$(SRC_NAME:.c=.o)
 

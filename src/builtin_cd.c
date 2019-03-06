@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/28 14:58:44 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 11:31:29 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 18:04:48 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,9 +17,14 @@ void	builtin_cd(char **cmd, t_env *my_env)
 {
 	if (!cmd[1])
 	{
-		replace_env(&my_env, get_env(my_env->env, "PWD"), "OLDPWD=");
-		chdir(get_env(my_env->env, "HOME"));
-		replace_env(&my_env, get_env(my_env->env, "HOME"), "PWD=");
+		if (get_env(my_env->env, "HOME") == NULL)
+			ft_putendl("cd : HOME not set");
+		else
+		{
+			replace_env(&my_env, get_env(my_env->env, "PWD"), "OLDPWD=");
+			chdir(get_env(my_env->env, "HOME"));
+			replace_env(&my_env, get_env(my_env->env, "HOME"), "PWD=");
+		}
 		return ;
 	}
 	if (ft_strcmp(cmd[1], "-") == 0)

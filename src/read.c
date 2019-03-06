@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/13 18:18:09 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 11:40:54 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 18:04:31 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -85,7 +85,7 @@ t_cmd		*create_cmd(char *line, t_env *my_env)
 		i++;
 	}
 	ft_free_2tab((void*)tab);
-	cmd = replace_tilde(start, my_env);
+	cmd = replace_expansion(start, my_env);
 	return (cmd);
 }
 

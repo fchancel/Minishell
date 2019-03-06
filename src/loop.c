@@ -5,8 +5,21 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/03/06 13:18:23 by fchancel     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/06 16:25:55 by fchancel    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   loop.c                                           .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/25 14:41:03 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 11:40:55 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 13:15:29 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,7 +53,7 @@ int		loop_lk_list(t_cmd *cmd, t_env *my_env)
 	start = cmd;
 	while (cmd)
 	{
-		ret = check_builtins(cmd->tab_cmd, my_env);
+		ret = check_builtins(cmd, my_env);
 		if (ret == -1)
 			free_all(start, my_env, EXIT);
 		else if (ret == 0)
@@ -72,7 +85,7 @@ void	in_loop(t_cmd *cmd, t_env *my_env)
 	if (ft_strchr(cmd->tab_cmd[0], '/') != NULL)
 	{
 		if ((path = control_access(cmd->tab_cmd)) != NULL)
-			exec_cmd(cmd->tab_cmd, path, my_env->env);
+				exec_cmd(cmd, path, my_env);
 	}
 	else
 	{
@@ -84,7 +97,7 @@ void	in_loop(t_cmd *cmd, t_env *my_env)
 		if (path == NULL)
 			no_command(cmd->tab_cmd[0]);
 		else
-			exec_cmd(cmd->tab_cmd, path, my_env->env);
+			exec_cmd(cmd, path, my_env);
 		ft_free_2tab((void**)final_path);
 	}
 }
