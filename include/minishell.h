@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/26 15:09:23 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 19:06:04 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 19:20:58 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -147,7 +147,7 @@ void				in_loop(t_cmd *cmd, t_env *my_env);
 */
 
 int					check_builtins(t_cmd *cmd, t_env *my_env);
-void				builtin_echo(char **cmd, t_env *my_env);
+void				builtin_echo(char **cmd);
 int					parsing_env(t_cmd *cmd, t_env *my_env);
 
 /*
@@ -173,11 +173,12 @@ void				builtin_unsetenv(char **cmd, t_env *my_env);
 
 /*
 **┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-**┃                                 tilde					                   ┃
+**┃                                 expansion				                   ┃
 **┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 */
 
 t_cmd				*replace_expansion(t_cmd *cmd, t_env *my_env);
-char				*if_expansion(char *str, char **env, char expansion, char *search);
+char				*if_expansion(char *str, char **env, char expansion,
+														char *search);
 
 #endif

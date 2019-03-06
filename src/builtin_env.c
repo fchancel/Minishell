@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/04 14:50:02 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 17:01:24 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 19:16:53 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 int			builtin_env(t_cmd *cmd, t_env *my_env)
 {
-	char 	*tmp;
+	char	*tmp;
 
 	if (!cmd->tab_cmd[1])
 		print_env(my_env);

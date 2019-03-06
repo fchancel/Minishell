@@ -6,7 +6,7 @@
 #    By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2019/02/04 22:28:38 by fchancel     #+#   ##    ##    #+#        #
-#    Updated: 2019/03/06 12:21:16 by fchancel    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/06 19:14:37 by fchancel    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -26,7 +26,7 @@ SRC_NAME 	=	read.c				\
 				builtins.c			\
 				builtin_cd.c		\
 				builtin_env.c		\
-				tilde.c
+				expansion.c
 OBJ_PATH	= 	objs
 CPPFLAGS	=	-I include
 LDFLAG		= 	-L libft

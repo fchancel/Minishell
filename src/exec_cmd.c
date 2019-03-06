@@ -6,7 +6,7 @@
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/02/18 11:34:33 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 19:09:36 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 19:15:57 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,10 +25,7 @@ void	exec_cmd(t_cmd *cmd, char *path, t_env *my_env)
 		if (execve(path, cmd->tab_cmd, my_env->env) == -1)
 		{
 			if ((access(cmd->tab_cmd[0], X_OK) == -1))
-			{
-				ft_putstr(cmd->tab_cmd[0]);
 				ft_putendl(" : Permissions denied");
-			}
 			else
 			{
 				ft_putstr("Are you stupid ? ");

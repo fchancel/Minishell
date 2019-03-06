@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   tilde.c                                          .::    .:/ .      .::   */
+/*   expansion.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: fchancel <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/03/06 10:52:49 by fchancel     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/06 18:21:50 by fchancel    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/06 19:18:37 by fchancel    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,7 +31,8 @@ t_cmd	*replace_expansion(t_cmd *cmd, t_env *my_env)
 			{
 				expansion = cmd->tab_cmd[i][0];
 				tmp = cmd->tab_cmd[i];
-				cmd->tab_cmd[i] = if_expansion(cmd->tab_cmd[i], my_env->env, expansion, ft_strchr(cmd->tab_cmd[i], '$') + 1);
+				cmd->tab_cmd[i] = if_expansion(cmd->tab_cmd[i], my_env->env,
+						expansion, ft_strchr(cmd->tab_cmd[i], '$') + 1);
 				free(tmp);
 			}
 			i++;
