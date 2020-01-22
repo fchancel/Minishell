@@ -32,7 +32,7 @@ CPPFLAGS	=	-I include
 LDFLAG		= 	-L libft
 LDLIBS		=	-lft
 CC 			=	clang
-CFLAGS 		=	-Werror -Wall -Wextra
+CFLAGS 		=	-Werror -Wall -Wextra -g
 
 OBJ_NAME 	= 	$(SRC_NAME:.c=.o)
 
@@ -43,7 +43,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 		@make -C libft
-		@$(CC) $(LDFLAG) $(LDLIBS) $^ -o $@
+		@$(CC) $(LDFLAG) $^ $(LDLIBS)  -o $@
 		@echo "Compilation minishell .... OK"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
@@ -61,4 +61,6 @@ fclean: clean
 		@rm -fv $(NAME)
 		@echo "Fclean minishell .......... OK"
 re: fclean all
+
+
 
