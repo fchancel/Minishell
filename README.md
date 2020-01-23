@@ -12,7 +12,7 @@ Créer un mini interprétateur de commande UNIX
 *  Gestion propre du signal (Ctrl-c)
 *  Prompt dynamique
 
-*  Une série de Builtins:
+Implémentation d'une série de Builtins:
 *  `exit`
 *  `echo`
 *  `cd`
