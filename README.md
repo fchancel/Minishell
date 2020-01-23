@@ -5,6 +5,20 @@
 
 Créer un mini interprétateur de commande UNIX
 
+*  Les lignes de commande doivent être simple (no pipes, no redirection ou autre fonction avancé)
+*  Les exécutables sont ceux que vous pouvez trouver dans les chemins indiqués dans la variable `PATH`
+*  La gestion des erreurs doivent être gérer sans utiliser `erno` et adapté à la sortie d'erreur
+*  Gestion de l'environnement
+*  Gestion propre du signal (Ctrl-c)
+*  Prompt dynamique
+
+*  Une série de Builtins:
+*  `exit`
+*  `echo`
+*  `cd`
+*  `env`
+*  `setenv`
+*  `unsetenv`
 
 L'interprétateur ne doit en aucun cas avoir de leaks.
 
