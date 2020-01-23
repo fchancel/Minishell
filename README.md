@@ -29,4 +29,3 @@ Pour quitter `exit`
 
 ![Démonstration minishell](https://gitlab.com/fchancel/minishell/raw/master/img/minishell1.gif)
 ![Démonstration minishell](https://gitlab.com/fchancel/minishell/raw/master/img/minishell2.gif)
-![Démonstration minishell](https://gitlab.com/fchancel/minishell/raw/master/img/minishell3.gif)
