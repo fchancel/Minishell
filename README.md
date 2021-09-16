@@ -41,5 +41,5 @@ Pour quitter `exit`
 
 ## Démonstration
 
-![Démonstration minishell](https://gitlab.com/fchancel/minishell/raw/master/img/minishell1.gif)
-![Démonstration minishell](https://gitlab.com/fchancel/minishell/raw/master/img/minishell2.gif)
+![Démonstration minishell](https://raw.githubusercontent.com/fchancel/Minishell/master/img/minishell1.gif)
+![Démonstration minishell](https://raw.githubusercontent.com/fchancel/Minishell/master/img/minishell2.gif)
